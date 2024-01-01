@@ -63,8 +63,15 @@ const router = async () => {
   const view = new match.route.view(getParams(match));
   document.querySelector('#app').innerHTML = await view.getHtml();
 
+  // Define own page script
   const scriptSrc = await view.getScript();
-  console.log(scriptSrc);
+  const existingScript = document.querySelector('#scriptSrc');
+  existingScript?.remove();
+  const scriptElement = document.createElement('script');
+  scriptElement.id = 'scriptSrc';
+  scriptElement.type = 'module';
+  scriptElement.src = scriptSrc;
+  document.body.appendChild(scriptElement);
 };
 
 window.addEventListener('popstate', router);

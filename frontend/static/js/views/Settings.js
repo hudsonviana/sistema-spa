@@ -10,6 +10,10 @@ export default class extends AbstractView {
     return `
       <h1>Settings</h1>
       <p>Gerencie suas configurações</p>
-    `;
+      <button id="btnMsg">Teste de Mensagem do Settings</button>`;
+  }
+
+  async getScript() {
+    return '/static/js/script_settings.js';
   }
 }
